@@ -260,7 +260,12 @@ class VOC:
 
                 objects = root.findall("object")
                 if len(objects) == 0:
-                    return False, "number object zero"
+                    # no objects in xml file
+                    choice = input("\nNo objects in current xml file, continue parsing other files? [yes/no] ")
+                    if choice.lower() in ["y", "yes"]:
+                        continue
+                    else:
+                        return False, "number object zero"
 
                 obj = {
                     "num_obj": len(objects)
